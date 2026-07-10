@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SKU补货量计算 Skill - 下载</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .card {
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            max-width: 720px;
+            width: 100%;
+            padding: 48px;
+        }
+        .badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: #fff;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+        h1 {
+            font-size: 28px;
+            color: #1a1a2e;
+            margin-bottom: 8px;
+        }
+        .subtitle {
+            color: #6b7280;
+            font-size: 16px;
+            margin-bottom: 32px;
+        }
+        .features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+        .feature {
+            background: #f8f9fc;
+            border-radius: 10px;
+            padding: 16px;
+        }
+        .feature-icon {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+        .feature h3 {
+            font-size: 14px;
+            color: #1a1a2e;
+            margin-bottom: 4px;
+        }
+        .feature p {
+            font-size: 13px;
+            color: #6b7280;
+            line-height: 1.5;
+        }
+        .formula-box {
+            background: #f0f4ff;
+            border-left: 4px solid #667eea;
+            border-radius: 8px;
+            padding: 16px 20px;
+            margin-bottom: 32px;
+            font-family: 'Menlo', 'Consolas', monospace;
+            font-size: 13px;
+            color: #374151;
+            line-height: 1.8;
+        }
+        .info-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 32px;
+            font-size: 14px;
+        }
+        .info-table th, .info-table td {
+            padding: 10px 12px;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .info-table th {
+            color: #6b7280;
+            font-weight: 500;
+            width: 120px;
+        }
+        .info-table td {
+            color: #1a1a2e;
+        }
+        .download-btn {
+            display: block;
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+        .download-btn span {
+            font-size: 13px;
+            opacity: 0.9;
+            font-weight: 400;
+            display: block;
+            margin-top: 4px;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 24px;
+            font-size: 12px;
+            color: #9ca3af;
+        }
+        @media (max-width: 520px) {
+            .card { padding: 28px; }
+            .features { grid-template-columns: 1fr; }
+            h1 { font-size: 22px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <span class="badge">Claude Code Skill</span>
+        <h1>SKU补货量计算与采购订单生成</h1>
+        <p class="subtitle">智能计算SKU补货量，自动生成采购订单，优化库存周转效率</p>
+
+        <div class="features">
+            <div class="feature">
+                <div class="feature-icon">🧠</div>
+                <h3>智能计算</h3>
+                <p>基于销量数据和库存状态，自动计算最优补货量</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🎯</div>
+                <h3>场景适配</h3>
+                <p>自动识别大促、雨天等特殊场景，调整计算策略</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">⚠️</div>
+                <h3>风险预警</h3>
+                <p>大额订单、长库龄等异常场景自动提醒人工介入</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">📦</div>
+                <h3>自动建单</h3>
+                <p>补货结果自动填充采购建单模板，一键创建采购订单</p>
+            </div>
+        </div>
+
+        <div class="formula-box">
+            补货量 = 目标周转天数 × 日均销量 - 可订购库存<br>
+            日均销量 = (28日销量÷28 × 权重) + (7日销量÷7 × 权重)<br>
+            可订购库存 = 现货库存 + 在途库存
+        </div>
+
+        <table class="info-table">
+            <tr><th>版本</th><td>v1.0.0</td></tr>
+            <tr><th>依赖</th><td>pandas, openpyxl</td></tr>
+            <tr><th>包含内容</th><td>计算脚本 / 参数配置 / API接口定义 / Excel模板 / 使用文档</td></tr>
+            <tr><th>适用场景</th><td>日常补货、618/双11大促备货、雨天销量调整</td></tr>
+        </table>
+
+        <!--
+            IMPORTANT: 请将下面的下载链接替换为你的 GitHub Release 地址
+            格式: https://github.com/<你的用户名>/sku-replenishment-calculation/releases/download/v1.0.0/sku-replenishment-calculation.zip
+        -->
+        <a href="https://github.com/YOUR_USERNAME/sku-replenishment-calculation/releases/download/v1.0.0/sku-replenishment-calculation.zip"
+           class="download-btn" id="downloadBtn">
+            下载 SKU补货计算 Skill
+            <span>sku-replenishment-calculation.zip (约70KB)</span>
+        </a>
+
+        <p class="footer">发布于 2026-04-16 | Claude Code Skill</p>
+    </div>
+
+    <script>
+        // 自动检测当前 GitHub Pages 域名并修正下载链接
+        (function() {
+            var btn = document.getElementById('downloadBtn');
+            var currentHost = window.location.hostname;
+            // 如果是 GitHub Pages (xxx.github.io)
+            if (currentHost.endsWith('.github.io')) {
+                var username = currentHost.replace('.github.io', '');
+                btn.href = 'https://github.com/' + username + '/sku-replenishment-calculation/releases/download/v1.0.0/sku-replenishment-calculation.zip';
+            }
+        })();
+    </script>
+</body>
+</html>
