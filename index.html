@@ -138,7 +138,7 @@
 </head>
 <body>
     <div class="card">
-        <span class="badge">Claude Code Skill</span>
+        <span class="badge">Agent Skill</span>
         <h1>SKU补货量计算与采购订单生成</h1>
         <p class="subtitle">智能计算SKU补货量，自动生成采购订单，优化库存周转效率</p>
 
@@ -172,36 +172,20 @@
         </div>
 
         <table class="info-table">
-            <tr><th>版本</th><td>v1.0.0</td></tr>
-            <tr><th>依赖</th><td>pandas, openpyxl</td></tr>
-            <tr><th>包含内容</th><td>计算脚本 / 参数配置 / API接口定义 / Excel模板 / 使用文档</td></tr>
-            <tr><th>适用场景</th><td>日常补货、618/双11大促备货、雨天销量调整</td></tr>
+            <tr><th>版本</th><td>v1.1.0</td></tr>
+            <tr><th>依赖</th><td>计算内核零第三方依赖；表格读写需 pandas / openpyxl</td></tr>
+            <tr><th>测试</th><td>53 个用例，覆盖大促调整 / 雨天降权 / 产能封顶 / 异常拦截</td></tr>
+            <tr><th>包含内容</th><td>计算脚本 / 参数配置 / API接口定义 / 样例数据 / 测试 / 使用文档</td></tr>
+            <tr><th>适用场景</th><td>日常补货、618/双11大促备货、雨天销量调整、供应商产能约束</td></tr>
         </table>
 
-        <!--
-            IMPORTANT: 请将下面的下载链接替换为你的 GitHub Release 地址
-            格式: https://github.com/<你的用户名>/sku-replenishment-calculation/releases/download/v1.0.0/sku-replenishment-calculation.zip
-        -->
-        <a href="https://github.com/YOUR_USERNAME/sku-replenishment-calculation/releases/download/v1.0.0/sku-replenishment-calculation.zip"
-           class="download-btn" id="downloadBtn">
+        <!-- 压缩包与本页同目录,用相对链接以免受仓库改名或 Release 变动影响 -->
+        <a href="./sku-replenishment-calculation.zip" class="download-btn" download>
             下载 SKU补货计算 Skill
-            <span>sku-replenishment-calculation.zip (约70KB)</span>
+            <span>sku-replenishment-calculation.zip (约 120KB)</span>
         </a>
 
-        <p class="footer">发布于 2026-04-16 | Claude Code Skill</p>
+        <p class="footer">v1.1.0 · 更新于 2026-08-20 | 遵循 Agent Skills 开放标准</p>
     </div>
-
-    <script>
-        // 自动检测当前 GitHub Pages 域名并修正下载链接
-        (function() {
-            var btn = document.getElementById('downloadBtn');
-            var currentHost = window.location.hostname;
-            // 如果是 GitHub Pages (xxx.github.io)
-            if (currentHost.endsWith('.github.io')) {
-                var username = currentHost.replace('.github.io', '');
-                btn.href = 'https://github.com/' + username + '/sku-replenishment-calculation/releases/download/v1.0.0/sku-replenishment-calculation.zip';
-            }
-        })();
-    </script>
 </body>
 </html>
